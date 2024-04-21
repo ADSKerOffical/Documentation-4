@@ -1,0 +1,116 @@
+                        • pairs and ipairs •
+• pairs and ipairs it functions for selecting tables •
+• pairs iterates through all table elements in random order •
+• ipairs used to iterate over table elements when the keys are sequential integers, starting at 1. It stops at the first empty element •
+
+• Example script with "pairs": •
+
+local tbl = {key1 = "value1", key2 = "value2", key3 = "value3"}
+for key, value in pairs(tbl) do
+  print(key, value)
+end
+
+• This script will output this text to the console: •
+
+key1	value1
+key2	value2
+key3	value3
+
+• Example script with "ipairs": •
+
+local tbl = {"apple", "banana", "cherry"}
+for index, value in ipairs(tbl) do
+  print(index, value)
+end
+
+• This script will output this text to the console: •
+
+1	apple
+2	banana
+3	cherry
+
+• Here's another example script: •
+
+local tbl = {"apple", "banana", [5] = "cherry"}
+for index, value in ipairs(tbl) do
+  print(index, value)
+end
+
+• This script outputs to the console: •
+
+1	apple
+2	banana
+
+• If the table contains some empty element, then further search stops •
+• Let's look at more complex table examples, first example: •
+
+local student = {
+    name = "Alice",
+    age = 20,
+    courses = {"Math", "Physics", "Literature"},
+    grades = {Math = "A", Physics = "B", Literature = "A"}
+}
+
+for key, value in pairs(student) do
+    print(key, value)
+end
+
+• This script iterates through all elements including names, ages, courses and grades •
+• Let's look at another example script: •
+
+local matrix = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+}
+
+for i, row in ipairs(matrix) do
+    for j, value in ipairs(row) do
+        print(i, j, value)
+    end
+end
+
+• This example uses `ipairs` to iterate over the elements of an array-like structure `matrix`. We iterate through all the elements of the matrix, using nested `ipairs` loops to process each row and each •
+
+• Let's look at another type, namely "GetDescendants()" •
+• GetDescendants() is a method that is used in Roblox Lua to get all the descendants of an instance (part) in the object hierarchy •
+• GetDescendants() useful for traversing and interacting with all objects inside another object, for example to change the properties of all elements inside a particular parent object •
+• Here is an example script using `ipairs` and `GetDescendants()` to change the properties of objects within a parent object: •
+
+local parent = game.Workspace
+local descendants = parent:GetDescendants()
+for i, obj in ipairs(descendants) do
+    if obj:IsA("Part") then
+        obj.BrickColor = BrickColor.new("Bright blue")
+    end
+end
+
+• This script searches for all descendants of Parts and changes their color •
+• Another example with GetDescendants(): •
+
+local parent = game.Players.LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("ScreenGui")
+local descendants = parent:GetDescendants()
+for i, obj in ipairs(descendants) do
+    if obj:IsA("TextButton") then
+        obj.MouseButton1Click:Connect(function()
+            print("Button clicked: " .. obj.Name)
+        end)
+    end
+end
+
+• Let's look at a more complex script: •
+
+local model = game.Workspace.ModelName  -- Instead of ModelName write your object
+local descendants = model:GetDescendants()
+for i, obj in ipairs(descendants) do
+    if obj:IsA("BasePart") then
+        local light = Instance.new("PointLight")
+        light.Brightness = 2
+        light.Color = Color3.new(1, 1, 0)
+        light.Parent = obj
+    end
+end
+
+• In this example, we create and add a light source to each part inside the Model object, which allows us to add a lighting effect to all parts inside the model. •
+
+• We conclude that pairs and ipairs these are very important functions for creating maps or just scripts •
